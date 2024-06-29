@@ -5,7 +5,7 @@
   "name": "Mc122477Fix",
   "description": "A simple mod that fixes MC-122477, the random extra chat character on Unix-based systems",
   "authors": [
-    "SizableShrimp"
+    "SizableShrimp(creator), Farmer_Markus(compatibility with other MC versions)"
   ],
   "contact": {
     "homepage": "https://www.curseforge.com/minecraft/mc-mods/mc122477fix",
@@ -24,8 +24,8 @@
     "mc122477fix.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.10.0",
+    "fabricloader": ">=0.14.18",
     "fabric": "*",
-    "minecraft": "1.14.x"
+    "minecraft": "1.21"
   }
 }
