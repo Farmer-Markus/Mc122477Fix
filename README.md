@@ -1,4 +1,4 @@
-#This is a fork and not the origial
+# This is a fork and not the origial
 I cloned this mod from [here](https://github.com/RecursiveG/Mc122477Fix) to release the mod for fabric and newer versions.
 
 
