@@ -3,6 +3,7 @@ I cloned this mod from [here](https://github.com/RecursiveG/Mc122477Fix) to rele
 
 Java 21 <br />
 Minecraft 1.20.5 - 1.20.6 <br />
+Fabric <br />
 
 # MC-122477 Fix
 ![[CurseForge](https://www.curseforge.com/minecraft/mc-mods/mc122477fix)](https://cf.way2muchnoise.eu/versions/432448.svg)
