@@ -2,7 +2,7 @@
   "required": true,
   "minVersion": "0.8",
   "package": "me.sizableshrimp.mc122477fix.mixin",
-  "compatibilityLevel": "JAVA_21",
+  "compatibilityLevel": "JAVA_17",
   "client": [
     "MixinKeyboard"
     //"MixinRenderSystem"
