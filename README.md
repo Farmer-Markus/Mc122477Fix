@@ -1,6 +1,8 @@
 # This is a fork and not the original
-I cloned this mod from [here](https://github.com/RecursiveG/Mc122477Fix) to release the mod for fabric and newer versions.
+I cloned this mod from [here](https://github.com/RecursiveG/Mc122477Fix) to release the mod for fabric and newer versions. <br />
 
+java 21 <br />
+Minecraft 1.20.5 - 1.20.6 <br />
 
 # MC-122477 Fix
 ![[CurseForge](https://www.curseforge.com/minecraft/mc-mods/mc122477fix)](https://cf.way2muchnoise.eu/versions/432448.svg)
