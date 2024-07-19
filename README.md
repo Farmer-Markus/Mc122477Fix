@@ -1,4 +1,5 @@
 # This is a fork and not the original
+[![CurseForge](https://cf.way2muchnoise.eu/versions/432448.svg)]([https://www.curseforge.com/minecraft/mc-mods/mc122477fix](https://modrinth.com/mod/mc122477fix-re-updated))  <br />
 I cloned this mod from [here](https://github.com/RecursiveG/Mc122477Fix) to release the mod for fabric and newer versions. <br />
 
 Java 21 <br />
