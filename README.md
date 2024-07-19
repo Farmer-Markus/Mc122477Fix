@@ -10,6 +10,8 @@ Fabric <br />
 ## New downloads
 - [Github](https://github.com/Farmer-Markus/Mc122477Fix/releases)
 - [Modrinth](https://modrinth.com/mod/mc122477fix-re-updated)
+  
+---
 
 # MC-122477 Fix
 ![[CurseForge](https://www.curseforge.com/minecraft/mc-mods/mc122477fix)](https://cf.way2muchnoise.eu/versions/432448.svg)
