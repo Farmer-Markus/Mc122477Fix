@@ -8,7 +8,7 @@
     "SizableShrimp(creator), Farmer_Markus(compatibility with other MC versions)"
   ],
   "contact": {
-    "homepage": "https://modrinth.com/project/mc122477fix-re-updated/",
+    "homepage": "https://modrinth.com/mod/mc122477fix-re-updated",
     "sources": "https://github.com/Farmer-Markus/Mc122477Fix",
     "issues": "https://github.com/Farmer-Markus/Mc122477Fix/issues"
   },
@@ -24,8 +24,8 @@
     "mc122477fix.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.14.18",
+    "fabricloader": ">=0.15.11",
     "fabric": "*",
-    "minecraft": ">=1.20 <=1.20.4"
+    "minecraft": ">=1.17 <=1.17.1"
   }
 }
