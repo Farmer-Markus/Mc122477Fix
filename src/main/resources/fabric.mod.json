@@ -8,9 +8,9 @@
     "SizableShrimp(creator), Farmer_Markus(compatibility with other MC versions)"
   ],
   "contact": {
-    "homepage": "https://www.curseforge.com/minecraft/mc-mods/mc122477fix",
-    "sources": "https://github.com/RecursiveG/Mc122477Fix",
-    "issues": "https://github.com/RecursiveG/Mc122477Fix/issues"
+    "homepage": "https://modrinth.com/project/mc122477fix-re-updated/",
+    "sources": "https://github.com/Farmer-Markus/Mc122477Fix",
+    "issues": "https://github.com/Farmer-Markus/Mc122477Fix/issues"
   },
   "license": "MIT",
   "icon": "assets/mc122477fix/icon.png",
