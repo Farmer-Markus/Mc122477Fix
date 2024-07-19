@@ -2,7 +2,7 @@
 I cloned this mod from [here](https://github.com/RecursiveG/Mc122477Fix) to release the mod for fabric and newer versions. <br />
 
 Java 17 <br />
-Minecraft 1.20 - 1.20.4 <br />
+Minecraft 1.18 - 1.18.2<br />
 Fabric <br />
 
 # MC-122477 Fix
