@@ -1,7 +1,7 @@
 # This is a fork and not the original
 ![Modrinth](https://badges.moddingx.org/modrinth/versions/6ndGWzq7)
 ![GitHub](https://img.shields.io/github/license/Farmer-Markus/Mc122477Fix)<br />
-I cloned this mod from [here](https://github.com/RecursiveG/Mc122477Fix) to release the mod for fabric and newer versions. <br />
+I cloned this mod from [here](https://github.com/RecursiveG/Mc122477Fix) to release the mod for fabric and newer versions and do some bug fixes. <br />
 
 Java 21 <br />
 Latest <br />
