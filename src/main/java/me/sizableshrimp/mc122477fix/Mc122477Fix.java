@@ -20,7 +20,7 @@ public class Mc122477Fix implements ClientModInitializer {
         KeyboardKeyPressedCallback.EVENT.register((window, key, scancode, action, modifiers) -> {
             MinecraftClient client = MinecraftClient.getInstance();
             // If this is a key release/repeat OR we're already in a screen (including chat screen), skip
-            if (action != GLFW.GLFW_PRESS || client.currentScreen != null)
+            if (action != GLFW.GLFW_PRESS || client.currentScreen != null || key == GLFW.GLFW_KEY_ENTER) // "|| key == GLFW.GLFW_KEY_ENTER" fixes bug when opening chat with enter key, the next character won't be typed)
                 return ActionResult.PASS;
 
             // If the chat or command key was pressed, store what poll count it happened on.
