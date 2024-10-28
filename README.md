@@ -4,7 +4,7 @@
 I cloned this mod from [here](https://github.com/RecursiveG/Mc122477Fix) to release the mod for fabric and newer versions. <br />
 
 Java 21 <br />
-Latest <br />
+1.20.5-21.1 <br />
 Fabric <br />
 
 ## New downloads
