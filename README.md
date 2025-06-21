@@ -4,7 +4,7 @@
 I cloned this mod from [here](https://github.com/RecursiveG/Mc122477Fix) to release the mod for fabric and newer versions and do some bug fixes. <br />
 
 Java 21 <br />
-Minecraft 1.21.2 - 1.21.5 <br />
+Minecraft 1.21.2 - 1.21.6 <br />
 Fabric <br />
 
 ## New downloads
