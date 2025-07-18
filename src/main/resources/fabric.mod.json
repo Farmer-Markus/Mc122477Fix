@@ -5,7 +5,7 @@
   "name": "Mc122477Fix",
   "description": "A simple mod that fixes MC-122477, the random extra chat character on Unix-based systems",
   "authors": [
-    "SizableShrimp(creator), Farmer_Markus(compatibility with other MC versions)"
+    "SizableShrimp(creator), Farmer_Markus(Modern fabric, bug support)"
   ],
   "contact": {
     "homepage": "https://modrinth.com/mod/mc122477fix-re-updated",
@@ -26,6 +26,6 @@
   "depends": {
     "fabricloader": ">=0.14.18",
     "fabric": "*",
-    "minecraft": ">=1.21.2 <=1.21.6"
+    "minecraft": ">=1.21.2 <=1.21.8"
   }
 }
