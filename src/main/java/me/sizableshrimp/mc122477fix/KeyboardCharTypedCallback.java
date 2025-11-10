@@ -2,6 +2,8 @@ package me.sizableshrimp.mc122477fix;
 
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
+import net.minecraft.client.input.CharInput;
+import net.minecraft.client.input.KeyInput;
 import net.minecraft.util.ActionResult;
 import org.lwjgl.glfw.GLFWCharModsCallbackI;
 
@@ -16,9 +18,9 @@ import org.lwjgl.glfw.GLFWCharModsCallbackI;
  */
 public interface KeyboardCharTypedCallback {
     Event<KeyboardCharTypedCallback> EVENT = EventFactory.createArrayBacked(KeyboardCharTypedCallback.class,
-            listeners -> (window, codepoint, modifiers) -> {
+            listeners -> (window, input) -> {
                 for (KeyboardCharTypedCallback listener : listeners) {
-                    ActionResult result = listener.onCharTyped(window, codepoint, modifiers);
+                    ActionResult result = listener.onCharTyped(window, input);
 
                     if (result != ActionResult.PASS)
                         return result;
@@ -27,13 +29,5 @@ public interface KeyboardCharTypedCallback {
                 return ActionResult.PASS;
             });
 
-    /**
-     * Will be called when a Unicode character is input regardless of what modifier keys are used.
-     *
-     * @param window the window that received the event
-     * @param codepoint the Unicode code point of the character
-     * @param modifiers bitfield describing which modifier keys were held down
-     * @see GLFWCharModsCallbackI#invoke(long, int, int)
-     */
-    ActionResult onCharTyped(long window, int codepoint, int modifiers);
+    ActionResult onCharTyped(long window, CharInput input);
 }

@@ -2,6 +2,7 @@ package me.sizableshrimp.mc122477fix;
 
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
+import net.minecraft.client.input.KeyInput;
 import net.minecraft.util.ActionResult;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWKeyCallbackI;
@@ -18,9 +19,9 @@ import org.lwjgl.glfw.GLFWKeyCallbackI;
  */
 public interface KeyboardKeyPressedCallback {
     Event<KeyboardKeyPressedCallback> EVENT = EventFactory.createArrayBacked(KeyboardKeyPressedCallback.class,
-            listeners -> (window, key, scancode, i, modifiers) -> {
+            listeners -> (window, input) -> {
                 for (KeyboardKeyPressedCallback listener : listeners) {
-                    ActionResult result = listener.onKeyPressed(window, key, scancode, i, modifiers);
+                    ActionResult result = listener.onKeyPressed(window, input);
 
                     if (result != ActionResult.PASS)
                         return result;
@@ -29,15 +30,5 @@ public interface KeyboardKeyPressedCallback {
                 return ActionResult.PASS;
             });
 
-    /**
-     * Will be called when a key is pressed, repeated or released.
-     *
-     * @param window the window that received the event
-     * @param key the keyboard key that was pressed or released
-     * @param scancode the system-specific scancode of the key
-     * @param action the key action. One of: {@link GLFW#GLFW_PRESS PRESS}, {@link GLFW#GLFW_RELEASE RELEASE}, {@link GLFW#GLFW_REPEAT REPEAT}
-     * @param modifiers bitfield describing which modifiers keys were held down
-     * @see GLFWKeyCallbackI#invoke(long, int, int, int, int)
-     */
-    ActionResult onKeyPressed(long window, int key, int scancode, int action, int modifiers);
+    ActionResult onKeyPressed(long window, KeyInput input);
 }

@@ -17,14 +17,14 @@ public class Mc122477Fix implements ClientModInitializer {
         GLFWPollCallback.EVENT.register(() -> this.pollCount++);
 
         // Key press events are always processed before char type events
-        KeyboardKeyPressedCallback.EVENT.register((window, key, scancode, action, modifiers) -> {
+        KeyboardKeyPressedCallback.EVENT.register((window, key) -> {
             MinecraftClient client = MinecraftClient.getInstance();
             // If this is a key release/repeat OR we're already in a screen (including chat screen), skip
-            if (action != GLFW.GLFW_PRESS || client.currentScreen != null  || key == GLFW.GLFW_KEY_ENTER) // "|| key == GLFW.GLFW_KEY_ENTER" fixes bug when opening chat with enter key, the next character won't be typed))
+            if (key.isUp() || client.currentScreen != null  || key.key() == GLFW.GLFW_KEY_ENTER) // "|| key == GLFW.GLFW_KEY_ENTER" fixes bug when opening chat with enter key, the next character won't be typed))
                 return ActionResult.PASS;
 
-            // If the chat or command key was pressed, store what poll count it happened on.
-            if (client.options.chatKey.matchesKey(key, scancode) || client.options.commandKey.matchesKey(key, scancode)) {
+            // If the chat or command key was pressed, store what poll count it happened on. Same when opening inventory in creative mode ( Inv. open key could be typed into the creative search field )
+            if (client.options.chatKey.matchesKey(key) || client.options.commandKey.matchesKey(key) || client.options.inventoryKey.matchesKey(key)) {
                 this.prevKeyPoll = this.pollCount;
             } else {
                 // Otherwise, set to -1
@@ -33,7 +33,7 @@ public class Mc122477Fix implements ClientModInitializer {
 
             return ActionResult.PASS;
         });
-        KeyboardCharTypedCallback.EVENT.register((window, codepoint, modifiers) -> {
+        KeyboardCharTypedCallback.EVENT.register((window, keyChar) -> {
             // If the previous key poll is -1 or the poll count doesn't match up closely, skip
             if (this.prevKeyPoll == -1 || this.pollCount - this.prevKeyPoll > 5)
                 return ActionResult.PASS;
