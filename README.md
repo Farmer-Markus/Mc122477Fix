@@ -3,8 +3,8 @@
 ![GitHub](https://img.shields.io/github/license/Farmer-Markus/Mc122477Fix)<br />
 I cloned this mod from [here](https://github.com/RecursiveG/Mc122477Fix) to release the mod for fabric and newer versions and do some bug fixes. <br />
 
-Java 21 <br />
-Minecraft 1.21.10-1.21.11 <br />
+Java 25 <br />
+Minecraft 26.1 <br />
 Fabric <br />
 
 ## New downloads
