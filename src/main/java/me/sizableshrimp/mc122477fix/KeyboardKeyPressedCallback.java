@@ -2,8 +2,8 @@ package me.sizableshrimp.mc122477fix;
 
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
-import net.minecraft.client.input.KeyInput;
-import net.minecraft.util.ActionResult;
+import net.minecraft.client.input.KeyEvent;
+import net.minecraft.world.InteractionResult;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWKeyCallbackI;
 
@@ -21,14 +21,14 @@ public interface KeyboardKeyPressedCallback {
     Event<KeyboardKeyPressedCallback> EVENT = EventFactory.createArrayBacked(KeyboardKeyPressedCallback.class,
             listeners -> (window, input) -> {
                 for (KeyboardKeyPressedCallback listener : listeners) {
-                    ActionResult result = listener.onKeyPressed(window, input);
+                    InteractionResult result = listener.onKeyPressed(window, input);
 
-                    if (result != ActionResult.PASS)
+                    if (result != InteractionResult.PASS)
                         return result;
                 }
 
-                return ActionResult.PASS;
+                return InteractionResult.PASS;
             });
 
-    ActionResult onKeyPressed(long window, KeyInput input);
+    InteractionResult onKeyPressed(long window, KeyEvent input);
 }
