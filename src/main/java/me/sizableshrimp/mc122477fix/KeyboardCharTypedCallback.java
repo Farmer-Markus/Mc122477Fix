@@ -2,9 +2,9 @@ package me.sizableshrimp.mc122477fix;
 
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
-import net.minecraft.client.input.CharInput;
-import net.minecraft.client.input.KeyInput;
-import net.minecraft.util.ActionResult;
+import net.minecraft.client.input.CharacterEvent;
+import net.minecraft.client.input.KeyEvent;
+import net.minecraft.world.InteractionResult;
 import org.lwjgl.glfw.GLFWCharModsCallbackI;
 
 /**
@@ -20,14 +20,14 @@ public interface KeyboardCharTypedCallback {
     Event<KeyboardCharTypedCallback> EVENT = EventFactory.createArrayBacked(KeyboardCharTypedCallback.class,
             listeners -> (window, input) -> {
                 for (KeyboardCharTypedCallback listener : listeners) {
-                    ActionResult result = listener.onCharTyped(window, input);
+                    InteractionResult result = listener.onCharTyped(window, input);
 
-                    if (result != ActionResult.PASS)
+                    if (result != InteractionResult.PASS)
                         return result;
                 }
 
-                return ActionResult.PASS;
+                return InteractionResult.PASS;
             });
 
-    ActionResult onCharTyped(long window, CharInput input);
+    InteractionResult onCharTyped(long window, CharacterEvent input);
 }
