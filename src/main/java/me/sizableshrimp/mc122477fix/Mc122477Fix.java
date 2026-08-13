@@ -4,45 +4,39 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
+import net.minecraft.util.StringUtil;
 import net.minecraft.world.InteractionResult;
 import org.lwjgl.glfw.GLFW;
 
 @Environment(EnvType.CLIENT)
 public class Mc122477Fix implements ClientModInitializer {
-    private long pollCount;
-    private long prevKeyPoll;
+    String lastKeyName;
+    boolean lastGuiShown;
 
     @Override
     public void onInitializeClient() {
-        GLFWPollCallback.EVENT.register(() -> this.pollCount++);
-
         // Key press events are always processed before char type events
         KeyboardKeyPressedCallback.EVENT.register((window, key) -> {
-            Minecraft client = Minecraft.getInstance();
-
-            // If this is a key release/repeat OR we're already in a screen (including chat screen), skip
-            if (key.isUp() || client.gui.screen() != null  || key.key() == GLFW.GLFW_KEY_ENTER) // "|| key == GLFW.GLFW_KEY_ENTER" fixes bug when opening chat with enter key, the next character won't be typed))
+            if (key.isUp())
                 return InteractionResult.PASS;
 
-            // If the chat or command key was pressed, store what poll count it happened on. Same when opening inventory in creative mode ( Inv. open key could be typed into the creative search field )
-            if (client.options.keyChat.matches(key) || client.options.keyCommand.matches(key) || client.options.keyInventory.matches(key)) {
-                this.prevKeyPoll = this.pollCount;
-            } else {
-                // Otherwise, set to -1
-                this.prevKeyPoll = -1L;
+            // Save pressed key and ui state
+            Minecraft client = Minecraft.getInstance();
+            lastGuiShown = client.gui.screen() != null;
+            lastKeyName = GLFW.glfwGetKeyName(key.key(),GLFW.glfwGetKeyScancode(key.key())); // Took me a while to figure out these conversions...
+            return InteractionResult.PASS;
+        });
+
+        KeyboardCharTypedCallback.EVENT.register((window, keyChar) -> {
+            Minecraft client = Minecraft.getInstance();
+            // ui freshly opened?
+            if (client.gui.screen() != null && !lastGuiShown) {
+                String kChar = StringUtil.filterText(keyChar.codepointAsString());
+                if(lastKeyName.equals(kChar))
+                    return InteractionResult.FAIL;
             }
 
             return InteractionResult.PASS;
-        });
-        KeyboardCharTypedCallback.EVENT.register((window, keyChar) -> {
-            // If the previous key poll is -1 or the poll count doesn't match up closely, skip
-            if (this.prevKeyPoll == -1 || this.pollCount - this.prevKeyPoll > 5)
-                return InteractionResult.PASS;
-
-            // If we are on a close poll count to when the key press event was polled,
-            // then we should cancel the char type event to ensure it is not passed to the chat field.
-            this.prevKeyPoll = -1;
-            return InteractionResult.FAIL;
         });
     }
 }
