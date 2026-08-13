@@ -14,16 +14,16 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(KeyboardHandler.class)
 public class MixinKeyboardHandler {
     @Inject(method = "keyPress", at = @At(value = "FIELD", target = "Lnet/minecraft/client/KeyboardHandler;debugCrashKeyTime:J", ordinal = 0), cancellable = true)
-    private void injectOnKey(long window, int action, KeyEvent input, CallbackInfo ci) {
-        InteractionResult result = KeyboardKeyPressedCallback.EVENT.invoker().onKeyPressed(window, input);
+    private void injectOnKey(long handle, int action, KeyEvent event, CallbackInfo ci) {
+        InteractionResult result = KeyboardKeyPressedCallback.EVENT.invoker().onKeyPressed(handle, event);
 
         if (result == InteractionResult.FAIL)
             ci.cancel();
     }
 
-    @Inject(method = "charTyped", at = @At(value = "FIELD", target = "Lnet/minecraft/client/Minecraft;screen:Lnet/minecraft/client/gui/screens/Screen;", ordinal = 0), cancellable = true)
-    private void injectOnChar(long window, CharacterEvent input, CallbackInfo ci) {
-        InteractionResult result = KeyboardCharTypedCallback.EVENT.invoker().onCharTyped(window, input);
+    @Inject(method = "charTyped", at = @At("HEAD"), cancellable = true)
+    private void injectOnChar(long handle, CharacterEvent event, CallbackInfo ci) {
+        InteractionResult result = KeyboardCharTypedCallback.EVENT.invoker().onCharTyped(handle, event);
 
         if (result == InteractionResult.FAIL)
             ci.cancel();
