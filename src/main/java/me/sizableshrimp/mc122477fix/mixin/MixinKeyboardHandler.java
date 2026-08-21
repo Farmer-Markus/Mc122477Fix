@@ -1,34 +1,45 @@
 package me.sizableshrimp.mc122477fix.mixin;
 
-import me.sizableshrimp.mc122477fix.KeyboardCharTypedCallback;
-import me.sizableshrimp.mc122477fix.KeyboardKeyPressedCallback;
 import net.minecraft.client.KeyboardHandler;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.input.CharacterEvent;
 import net.minecraft.client.input.KeyEvent;
-import net.minecraft.world.InteractionResult;
+import org.lwjgl.glfw.GLFW;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 
+// Would be better to overwrite the "setup" function, but I don't know how.
+// Asking Ai will result in something I don't understand and thus will not be used
 @Mixin(KeyboardHandler.class)
 public class MixinKeyboardHandler {
-    @Inject(method = "keyPress", at = @At("HEAD"), cancellable = true)
-    private void KeyPressTest(long handle, int action, KeyEvent event, CallbackInfo ci)
-    {
-        InteractionResult result = KeyboardKeyPressedCallback.EVENT.invoker().onKeyPressed(handle, event);
+    @Shadow
+    @Final
+    private Minecraft minecraft;
+    @Unique
+    private boolean isIngame;
 
-        if (result == InteractionResult.FAIL)
-            ci.cancel();
+
+    @Inject(method = "keyPress", at = @At("HEAD"))
+    private void keyPressHead(final long handle, final int action, final KeyEvent event, CallbackInfo ci)
+    {
+        // Save before handling key event
+        if (action == GLFW.GLFW_PRESS)
+            isIngame = (this.minecraft.gui.screen() == null);
     }
 
     @Inject(method = "charTyped", at = @At("HEAD"), cancellable = true)
-    private void KeyPressTest(long handle, CharacterEvent event, CallbackInfo ci)
+    private void charTypedHead(final long handle, final CharacterEvent event, CallbackInfo ci)
     {
-        InteractionResult result = KeyboardCharTypedCallback.EVENT.invoker().onCharTyped(handle, event);
-
-        if (result == InteractionResult.FAIL)
-            ci.cancel();
+        // If gui opened since last key event -> ignore char event
+        if (isIngame && this.minecraft.gui.screen() != null) {
+            isIngame = false;
+            ci.cancel(); // Cancel method
+        }
     }
 }

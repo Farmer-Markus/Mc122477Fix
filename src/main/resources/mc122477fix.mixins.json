@@ -5,7 +5,6 @@
   "compatibilityLevel": "JAVA_25",
   "client": [
     "MixinKeyboardHandler"
-    //"MixinRenderSystem"
   ],
   "injectors": {
     "defaultRequire": 1
