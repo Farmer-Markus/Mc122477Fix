@@ -10,7 +10,8 @@ import org.lwjgl.glfw.GLFW;
 @Environment(EnvType.CLIENT)
 public class Mc122477Fix implements ClientModInitializer {
     private long pollCount;
-    private long prevKeyPoll;
+    // No opening key has been pressed yet; poll zero is a valid pending poll.
+    private long prevKeyPoll = -1L;
 
     @Override
     public void onInitializeClient() {
