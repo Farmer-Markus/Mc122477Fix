@@ -1,11 +1,11 @@
 package me.sizableshrimp.mc122477fix;
 
+import com.mojang.blaze3d.platform.InputConstants;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.InteractionResult;
-import org.lwjgl.glfw.GLFW;
 
 @Environment(EnvType.CLIENT)
 public class Mc122477Fix implements ClientModInitializer {
@@ -15,14 +15,14 @@ public class Mc122477Fix implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        GLFWPollCallback.EVENT.register(() -> this.pollCount++);
+        SDLPollCallback.EVENT.register(() -> this.pollCount++);
 
         // Key press events are always processed before char type events
         KeyboardKeyPressedCallback.EVENT.register((window, key) -> {
             Minecraft client = Minecraft.getInstance();
 
             // If this is a key release/repeat OR we're already in a screen (including chat screen), skip
-            if (key.isUp() || client.gui.screen() != null  || key.key() == GLFW.GLFW_KEY_ENTER) // "|| key == GLFW.GLFW_KEY_ENTER" fixes bug when opening chat with enter key, the next character won't be typed))
+            if (key.isUp() || client.gui.screen() != null  || key.key() == InputConstants.KEY_RETURN) // "|| key == InputConstants.KEY_RETURN" fixes bug when opening chat with enter key, the next character won't be typed))
                 return InteractionResult.PASS;
 
             // If the chat or command key was pressed, store what poll count it happened on. Same when opening inventory in creative mode ( Inv. open key could be typed into the creative search field )

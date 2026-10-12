@@ -4,8 +4,6 @@ import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
 import net.minecraft.client.input.KeyEvent;
 import net.minecraft.world.InteractionResult;
-import org.lwjgl.glfw.GLFW;
-import org.lwjgl.glfw.GLFWKeyCallbackI;
 
 /**
  * Callback for pressing a key on the keyboard.

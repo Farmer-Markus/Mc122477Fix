@@ -4,8 +4,8 @@
   "package": "me.sizableshrimp.mc122477fix.mixin",
   "compatibilityLevel": "JAVA_25",
   "client": [
-    "MixinKeyboardHandler"
-    //"MixinRenderSystem"
+    "MixinKeyboardHandler",
+    "MixinMinecraft"
   ],
   "injectors": {
     "defaultRequire": 1

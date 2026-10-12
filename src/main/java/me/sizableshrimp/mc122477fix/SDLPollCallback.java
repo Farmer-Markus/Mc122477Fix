@@ -4,13 +4,13 @@ import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
 
 /**
- * Callback for polling GLFW key and char events.
+ * Callback for polling SDL key and char events.
  * Called after each poll.
  */
-public interface GLFWPollCallback {
-    Event<GLFWPollCallback> EVENT = EventFactory.createArrayBacked(GLFWPollCallback.class,
+public interface SDLPollCallback {
+    Event<SDLPollCallback> EVENT = EventFactory.createArrayBacked(SDLPollCallback.class,
             listeners -> () -> {
-                for (GLFWPollCallback listener : listeners) {
+                for (SDLPollCallback listener : listeners) {
                     listener.onPoll();
                 }
             });

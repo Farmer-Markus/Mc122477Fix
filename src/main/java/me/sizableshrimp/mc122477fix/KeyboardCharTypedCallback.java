@@ -3,9 +3,7 @@ package me.sizableshrimp.mc122477fix;
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
 import net.minecraft.client.input.CharacterEvent;
-import net.minecraft.client.input.KeyEvent;
 import net.minecraft.world.InteractionResult;
-import org.lwjgl.glfw.GLFWCharModsCallbackI;
 
 /**
  * Callback for typing a character in a GUI.
